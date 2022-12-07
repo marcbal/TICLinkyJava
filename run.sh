@@ -3,9 +3,10 @@
 # The run.sh file must be the entry point of the docker container. It is not meant to be run by a user it a terminal.
 # Please use update.sh instead
 
-ls -la $TIC_TTY_INPUT
+ls -la /dev/ttyTIC
 echo "Initializing serial port"
-stty -F $TIC_TTY_INPUT 9600 raw cs7 parenb
+stty -F /dev/ttyTIC 9600 raw cs7 parenb & # make it async so if it locks, it doesnt lock everything
+sleep 1
 
 echo "Starting TIC server"
 java -cp res -jar /data/bin/tic.jar

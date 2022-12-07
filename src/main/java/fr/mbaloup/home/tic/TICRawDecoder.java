@@ -20,7 +20,7 @@ public class TICRawDecoder extends Thread {
 	static final char SEP_SP = 0x20;
 	static final char SEP_HT = 0x09;
 	
-	static final String INPUT_PATH = System.getenv("TIC_TTY_INPUT");
+	static final String INPUT_PATH = "/dev/ttyTIC";
 	
 	static final int CORRUPTION_MAX_LEVEL = 10; // max number of corruption detected while reading raw input
 	static final long CORRUPTION_LEVEL_DECAY_INTERVAL = 5000; // interval in ms between each corruption level decrement

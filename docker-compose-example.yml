@@ -9,8 +9,7 @@ services:
       TIC_MQTT_HASS_DISCOVERY_PREFIX: "homeassistant"
       TIC_MQTT_USERNAME: "username"
       TIC_MQTT_PASSWORD: "password"
-      TIC_TTY_INPUT: "/dev/ttyAMA0"
     devices:
-      - "/dev/ttyAMA0:/dev/ttyAMA0"
+      - "/dev/ttyAMA0:/dev/ttyTIC"
     volumes:
       - "./workdir:/data/workdir"
