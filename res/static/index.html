@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Domotique</title>
+        <link rel="stylesheet" type="text/css" href="index.css" media="screen"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="logged-in-content" style="display: none;">
+            <div id="left-widget-container">
+                <div class="widget">
+                    <header>Puissances</header>
+                    <main>
+                        <div class="big-value">
+                            <span class="name">Courante</span>
+                            <span class="int-value" id="live-data-papp"></span><span style="visibility: hidden;">.<span class="dec-value">&nbsp;&nbsp;</span></span>
+                            <span class="unit">VA</span>
+                        </div>
+                        <div class="big-value">
+                            <span class="name">Coupure</span>
+                            <span class="int-value" id="live-data-pcoup"></span><span style="visibility: hidden;">.<span class="dec-value">&nbsp;&nbsp;</span></span>
+                            <span class="unit">VA</span>
+                        </div>
+                        <div class="big-value">
+                            <span class="name">Référence (souscrite)</span>
+                            <span class="int-value" id="live-data-pref"></span><span style="visibility: hidden;">.<span class="dec-value">&nbsp;&nbsp;</span></span>
+                            <span class="unit">VA</span>
+                        </div>
+                        <div class="big-value">
+                            <span class="name">Max aujourd’hui</span>
+                            <span class="meta" id="live-data-pj-time">--:--</span>
+                            <span class="int-value" id="live-data-pj"></span><span style="visibility: hidden;">.<span class="dec-value">&nbsp;&nbsp;</span></span>
+                            <span class="unit">VA</span>
+                        </div>
+                        <div class="big-value">
+                            <span class="name">Max hier</span>
+                            <span class="meta" id="live-data-pj-1-time">--:--</span>
+                            <span class="int-value" id="live-data-pj-1"></span><span style="visibility: hidden;">.<span class="dec-value">&nbsp;&nbsp;</span></span>
+                            <span class="unit">VA</span>
+                        </div>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Voltage</header>
+                    <main>
+                        <div class="big-value">
+                            <span class="name">U<sub>eff</sub></span>
+                            <span class="int-value" id="live-data-urms"></span><span style="visibility: hidden;">.<span class="dec-value">&nbsp;</span></span>
+                            <span class="unit">V</span>
+                        </div>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Indexes cumulés</header>
+                    <main id="live-data-indexes">
+                        <div id="live-data-indexes-template" class="big-value live-data-index" style="display: none;">
+                            <span class="name"></span>
+                            <span class="int-value"></span>.<span class="dec-value">&nbsp;&nbsp;&nbsp;</span>
+                            <span class="unit">kWh</span>
+                        </div>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Indexes jour</header>
+                    <main id="live-data-indexes-day">
+                        <div id="live-data-indexes-day-template" class="big-value" style="display: none;">
+                            <span class="name"></span>
+                            <span class="meta"></span>
+                            <span class="int-value"></span>.<span class="dec-value"></span>
+                            <span class="unit">kWh</span>
+                        </div>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Couts depuis minuit</header>
+                    <main id="live-data-price-day">
+                        <div id="live-data-price-day-template" class="big-value" style="display: none;">
+                            <span class="name"></span>
+                            <span class="meta"><span class="live-data-price-per-kwh"></span> € / kWh</span>
+                            <span class="int-value"></span>.<span class="dec-value"></span>
+                            <span class="unit">€</span>
+                        </div>
+                        <div class="big-value">
+                            <span class="name">Total</span>
+                            <span class="int-value" id="live-data-price-total-int"></span>.<span class="dec-value" id="live-data-price-total-dec"></span>
+                            <span class="unit">€</span>
+                        </div>
+                        <div class="big-value">
+                            <span class="name">Abonnement</span>
+                            <span class="meta"><span id="live-data-price-sub-per-month"></span> € / mois</span>
+                            <span class="int-value" id="live-data-price-sub-int"></span>.<span class="dec-value" id="live-data-price-sub-dec"></span>
+                            <span class="unit">€</span>
+                        </div>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Infos compteur</header>
+                    <main>
+                        Num série : <span class="raw-value" id="live-data-serial"></span><br>
+                        PRM/<span title="Référence Point De Livraison">PDL</span> : <span class="raw-value" id="live-data-prm"></span><br>
+                        Tarif : <span class="raw-value" id="live-data-OPTARIF"></span><br>
+                        <span class="raw-value" id="live-data-status"></span>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Air</header>
+                    <main id="live-data-sensors">
+                        <div id="live-data-sensors-template" class="big-value" style="display: none;">
+                            <span class="name"></span>
+                            <span class="meta"><span class="live-data-sensor-hum"></span> % Hum.</span>
+                            <span class="int-value"></span>.<span class="dec-value"></span>
+                            <span class="unit">°C</span>
+                        </div>
+                    </main>
+                </div>
+                <div class="widget">
+                    <header>Connexion</header>
+                    <main>
+                        <form method="get" action="/_logout" target="login_frame">
+                            <input type="submit" value="Se déconnecter"/>
+                        </form>
+                    </main>
+                </div>
+            </div>
+            <!-- <div id="right-widget-container">
+                <div class="widget">
+                    <header>Widget 1</header>
+                    <main>Du contenu</main>
+                </div>
+                <div class="widget">
+                    <header>Widget 2</header>
+                    <main>Encore<br>du<br>contenu</main>
+                </div>
+                <div class="widget">
+                    <header>Widget 3</header>
+                    <main>Encore<br>du contenu</main>
+                </div>
+            </div> -->
+        </div>
+        <div id="login-form" style="display: none;">
+            <div class="widget">
+                <header>Connexion</header>
+                <main>
+                    <form method="post" action="/_login" onsubmit="setHTML('live-login-status', 'Connexion...');" target="login_frame">
+                        <input type="text" name="username" placeholder="Pseudo"/>
+                        <input type="password" name="password" placeholder="Mot de passe"/>
+                        <input type="submit" value="Connexion"/>
+                        <span class="raw-value" id="live-login-status"></span>
+                    </form>
+                    <iframe id="login_frame" name="login_frame" style="display: none;"></iframe>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="index.js"></script>

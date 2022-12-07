@@ -1,0 +1,135 @@
+* { box-sizing: border-box; }
+html, input { font-family: Arial, Helvetica, sans-serif; }
+html, body { margin: 0; padding: 0;}
+:root {
+    --color-theme: rgb(3.921%, 39.21%, 68.23%);
+    --min-size: calc(min(calc(100vw / 0.6), 100vh) / 3);
+}
+
+body {
+    padding: 16px;
+}
+
+.widget {
+    border: solid 1px var(--color-theme);
+    border-radius: 2px;
+    margin: 16px;
+}
+
+.widget > header {
+    background-color: var(--color-theme);
+    color: white;
+    padding: 10px;
+}
+
+.widget > main {
+    padding: 10px;
+}
+
+
+
+@media screen and (min-width: 800px) {
+    body {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+
+    #left-widget-container {
+        width: 400px;
+    }
+    #right-widget-container {
+        flex-grow: 1;
+    }
+
+    #login-form .widget {
+        margin: 16px auto;
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 799.99px) {
+    .widget {
+        margin: 16px auto;
+        min-width: 300px;
+        max-width: 400px;
+    }
+}
+
+
+
+.raw-value {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: var(--color-theme);
+}
+
+
+
+.big-value {
+    text-align: right;
+    position: relative;
+}
+.big-value .name {
+    position: absolute;
+    top: 0.2em; left: 0;
+}
+.big-value .int-value {
+    font-size: 3.5em;
+    font-family: monospace;
+    font-weight: bold;
+    color: var(--color-theme);
+}
+.big-value .dec-value {
+    font-size: 1.6em;
+    font-family: monospace;
+    font-weight: bold;
+    color: var(--color-theme);
+}
+.big-value .unit {
+    position: absolute;
+    top: 0.2em; right: 0;
+}
+
+.big-value .meta {
+    position: absolute;
+    bottom: 1em; left: 0;
+    font-size: 0.8em;
+}
+
+
+
+
+.live-data-index:not(.index-current) {
+    opacity: 33%;
+}
+
+
+
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="number"],
+form input[type="date"],
+form input[type="time"],
+form textarea,
+form select {
+	display: block;
+	margin: 5px auto;
+    border: solid 1px var(--color-theme);
+    border-radius: 2px;
+    padding: 5px;
+	font-size: 1.1em;
+	width: 100%;
+}
+form input[type="submit"] {
+	display: block;
+	margin: 5px auto;
+    border: solid 1px var(--color-theme);
+    border-radius: 2px;
+    padding: 5px;
+	font-size: 1.1em;
+	width: 100%;
+}

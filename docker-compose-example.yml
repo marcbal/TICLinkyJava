@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  tic:
+    build: .
+    restart: always
+    environment:
+      TIC_MQTT_SERVER_IP: "mqtt_ip"
+      TIC_MQTT_HASS_DISCOVERY_PREFIX: "homeassistant"
+      TIC_MQTT_USERNAME: "username"
+      TIC_MQTT_PASSWORD: "password"
+      TIC_TTY_INPUT: "/dev/ttyAMA0"
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+    volumes:
+      - "./workdir:/data/workdir"
