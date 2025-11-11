@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# The run.sh file must be the entry point of the docker container. It is not meant to be run by a user it a terminal.
+# The run.sh file must be the entry point of the docker container. It is not meant to be run by a user in a terminal.
 # Please use update.sh instead
 
 ls -la /dev/ttyTIC
